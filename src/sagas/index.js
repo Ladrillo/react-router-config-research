@@ -1,8 +1,8 @@
-import { helloWorld } from './helloWorld';
+import { watchStartApp } from './helloWorld';
 
 
 export default function* rootSaga() {
   return yield [
-    helloWorld(),
+    watchStartApp(),
   ];
 }
