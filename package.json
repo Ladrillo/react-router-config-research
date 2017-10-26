@@ -7,7 +7,7 @@
     "test": "jest",
     "webpack": "webpack -w",
     "build": "webpack -p",
-    "dev": "live-server --entry-file=src/index.html | webpack --watch"
+    "start": "live-server --entry-file=src/index.html | webpack --watch"
   },
   "babel": {
     "presets": [
