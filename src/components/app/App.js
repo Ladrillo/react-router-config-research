@@ -102,15 +102,14 @@ const routes = [
   }
 ];
 
-
 export class App extends Component {
   render() {
     return (
-        <BrowserRouter>
-          {
-            renderRoutes(routes)
-          }
-        </BrowserRouter>
+      <BrowserRouter>
+        {
+          renderRoutes(routes)
+        }
+      </BrowserRouter>
     );
   }
 }
