@@ -13,76 +13,19 @@ import {
 import { renderRoutes } from 'react-router-config';
 
 
-const Home = (props) => (
-  <div>
-    <h2>Home</h2>
-  </div>
-);
+import { infoRoutes } from './Info';
+import { labelsRoutes } from './Labels';
+import { timeclockRoutes } from './Timeclock';
 
-class About extends React.Component {
-  state = {
-    redirect: false,
-  }
-
-  render() {
-    return (<div>
-      <h2>About</h2>
-
-      {/* redirect component works fine: */}
-      <button onClick={e => this.setState({ redirect: true })}>redirect to topics</button>
-      {
-        this.state.redirect && <Redirect to={{
-          pathname: '/topics',
-          state: { from: this.props.location }
-        }} />
-      }
-    </div>
-    );
-  }
-}
-
-const Topic = (props) => (
-  <div>
-    <h3>{props.match.params.topicId}</h3>
-  </div>
-);
-
-const Topics = (props) => {
-  return (
-    <div>
-      <h2>Topics</h2>
-      <ul>
-        <li>
-          <Link to={`${props.match.url}/rendering`}>
-            Rendering with React
-        </Link>
-        </li>
-        <li>
-          <Link to={`${props.match.url}/components`}>
-            Components
-        </Link>
-        </li>
-        <li>
-          <Link to={`${props.match.url}/props-v-state`}>
-            Props v. State
-        </Link>
-        </li>
-      </ul>
-      {
-        renderRoutes(props.route.routes)
-      }
-    </div>
-  );
-};
 
 const Root = (props) => {
   return (
     <div>
       <h1>this is da root</h1>
       <ul>
-        <li><Link to='/home'>Home</Link></li>
-        <li><Link to='/about'>About</Link></li>
-        <li><Link to='/topics'>Topics</Link></li>
+        <li><Link to='/info'>info</Link></li>
+        <li><Link to='/labels'>labels</Link></li>
+        <li><Link to='/timeclock'>timeclock</Link></li>
       </ul>
       {
         renderRoutes(props.route.routes)
@@ -95,29 +38,7 @@ const routes = [
   {
     component: Root,
     path: '/',
-    someRandomProp: 'meh', // root component has access to this through props.route
-    routes: [
-      {
-        path: '/home',
-        exact: false,
-        component: Home,
-      },
-      {
-        path: '/about',
-        exact: false,
-        component: About,
-      },
-      {
-        path: '/topics',
-        component: Topics,
-        routes: [
-          {
-            path: '/topics/:topicId',
-            component: Topic,
-          }
-        ]
-      },
-    ]
+    routes: [ ...infoRoutes, ...labelsRoutes, ...timeclockRoutes ]
   }
 ];
 
