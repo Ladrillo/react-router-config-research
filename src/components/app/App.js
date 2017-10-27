@@ -7,7 +7,8 @@ import { bindActionCreators, dispatch } from 'redux';
 import {
   BrowserRouter,
   Route,
-  Link
+  Link,
+  Redirect,
 } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 
@@ -18,11 +19,27 @@ const Home = (props) => (
   </div>
 );
 
-const About = (props) => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
+class About extends React.Component {
+  state = {
+    redirect: false,
+  }
+
+  render() {
+    return (<div>
+      <h2>About</h2>
+
+      {/* redirect component works fine: */}
+      <button onClick={e => this.setState({ redirect: true })}>redirect to topics</button>
+      {
+        this.state.redirect && <Redirect to={{
+          pathname: '/topics',
+          state: { from: this.props.location }
+        }} />
+      }
+    </div>
+    );
+  }
+}
 
 const Topic = (props) => (
   <div>
@@ -51,7 +68,6 @@ const Topics = (props) => {
         </Link>
         </li>
       </ul>
-
       {
         renderRoutes(props.route.routes)
       }
@@ -100,7 +116,7 @@ const routes = [
             component: Topic,
           }
         ]
-      }
+      },
     ]
   }
 ];
