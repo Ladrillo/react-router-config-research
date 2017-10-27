@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 
 
-export class Timeclock extends Component {
+class Timeclock extends Component {
   render() {
     return (
       <div>

@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 
 
-export class Labels extends Component {
+class Labels extends Component {
   render() {
     return (
       <div>

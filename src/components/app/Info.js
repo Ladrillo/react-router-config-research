@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 
 
-export class Info extends Component {
+class Info extends Component {
   render() {
     return (
       <div>

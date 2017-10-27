@@ -17,42 +17,47 @@ import { infoRoutes } from './Info';
 import { labelsRoutes } from './Labels';
 import { timeclockRoutes } from './Timeclock';
 
+const entities = [
+  {
+    a: 1,
+    b: 2,
+  },
+  {
+    a: 1,
+    b: 2,
+  },
+  {
+    a: 1,
+    b: 2,
+  },
+  {
+    a: 1,
+    b: 2,
+  }
+];
 
-const Root = (props) => {
+
+
+const App = (props) => {
   return (
     <div>
-      <h1>this is da root</h1>
+      <h1>this is da app</h1>
       <ul>
-        <li><Link to='/info'>info</Link></li>
-        <li><Link to='/labels'>labels</Link></li>
-        <li><Link to='/timeclock'>timeclock</Link></li>
       </ul>
-      {
-        renderRoutes(props.route.routes)
-      }
+      <BrowserRouter>
+        <div>
+          <li><Link to='/info'>info</Link></li>
+          <li><Link to='/labels'>labels</Link></li>
+          <li><Link to='/timeclock'>timeclock</Link></li>
+          {
+            renderRoutes([...infoRoutes, ...labelsRoutes, ...timeclockRoutes], { entities })
+          }
+        </div>
+      </BrowserRouter>
     </div>
   );
 };
 
-const routes = [
-  {
-    component: Root,
-    path: '/',
-    routes: [ ...infoRoutes, ...labelsRoutes, ...timeclockRoutes ]
-  }
-];
-
-export class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        {
-          renderRoutes(routes)
-        }
-      </BrowserRouter>
-    );
-  }
-}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
