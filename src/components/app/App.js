@@ -30,32 +30,34 @@ const Topic = (props) => (
   </div>
 );
 
-const Topics = (props) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${props.match.url}/rendering`}>
-          Rendering with React
+const Topics = (props) => {
+  return (
+    <div>
+      <h2>Topics</h2>
+      <ul>
+        <li>
+          <Link to={`${props.match.url}/rendering`}>
+            Rendering with React
         </Link>
-      </li>
-      <li>
-        <Link to={`${props.match.url}/components`}>
-          Components
+        </li>
+        <li>
+          <Link to={`${props.match.url}/components`}>
+            Components
         </Link>
-      </li>
-      <li>
-        <Link to={`${props.match.url}/props-v-state`}>
-          Props v. State
+        </li>
+        <li>
+          <Link to={`${props.match.url}/props-v-state`}>
+            Props v. State
         </Link>
-      </li>
-    </ul>
+        </li>
+      </ul>
 
-    {
-      renderRoutes(props.route.routes)
-    }
-  </div>
-);
+      {
+        renderRoutes(props.route.routes)
+      }
+    </div>
+  );
+};
 
 const Root = (props) => {
   return (
@@ -77,6 +79,7 @@ const routes = [
   {
     component: Root,
     path: '/',
+    someRandomProp: 'meh', // root component has access to this through props.route
     routes: [
       {
         path: '/home',
