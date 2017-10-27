@@ -12,11 +12,6 @@ import {
 } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 
-
-import { infoRoutes } from './Info';
-import { labelsRoutes } from './Labels';
-import { timeclockRoutes } from './Timeclock';
-
 const entities = [
   {
     a: 1,
@@ -36,6 +31,10 @@ const entities = [
   }
 ];
 
+import { infoRoutes } from './Info';
+import { labelsRoutes } from './Labels';
+import { timeclockRoutes } from './Timeclock';
+const routes = [...infoRoutes, ...labelsRoutes, ...timeclockRoutes];
 
 
 const App = (props) => {
@@ -50,14 +49,13 @@ const App = (props) => {
           <li><Link to='/labels'>labels</Link></li>
           <li><Link to='/timeclock'>timeclock</Link></li>
           {
-            renderRoutes([...infoRoutes, ...labelsRoutes, ...timeclockRoutes], { entities })
+            renderRoutes(routes, { entities })
           }
         </div>
       </BrowserRouter>
     </div>
   );
 };
-
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
